@@ -1,0 +1,49 @@
+package OF_FremdKompo_D7;
+
+{$R *.res}
+{$R 'btJvxRichPopup.dcr'}
+{$R 'XPMenu.dcr'}
+{$R 'mpsDTAUS.dcr'}
+{$ALIGN 8}
+{$ASSERTIONS ON}
+{$BOOLEVAL OFF}
+{$DEBUGINFO ON}
+{$EXTENDEDSYNTAX ON}
+{$IMPORTEDDATA ON}
+{$IOCHECKS ON}
+{$LOCALSYMBOLS ON}
+{$LONGSTRINGS ON}
+{$OPENSTRINGS ON}
+{$OPTIMIZATION ON}
+{$OVERFLOWCHECKS OFF}
+{$RANGECHECKS OFF}
+{$REFERENCEINFO ON}
+{$SAFEDIVIDE OFF}
+{$STACKFRAMES OFF}
+{$TYPEDADDRESS OFF}
+{$VARSTRINGCHECKS ON}
+{$WRITEABLECONST OFF}
+{$MINENUMSIZE 1}
+{$IMAGEBASE $400000}
+{$DESCRIPTION 'OF Fremd Komponenten'}
+{$IMPLICITBUILD OFF}
+
+requires
+  rtl,
+  vcl,
+  vcljpg,
+  dbrtl,
+  vcldb,
+  JvCoreD7R,
+  Jcl,
+  JvStdCtrlsD7R,
+  JvDBD7R,
+  JvMMD7R;
+
+contains
+  XPMenu in 'XPMenu.pas',
+  mpsDTAUS in 'mpsDTAUS.pas',
+  btJvxRichPopup in 'btJvxRichPopup.pas',
+  SortGrid in 'SortGrid.pas';
+
+end.

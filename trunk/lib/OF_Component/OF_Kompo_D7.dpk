@@ -1,0 +1,48 @@
+package OF_Kompo_D7;
+
+{$R *.res}
+{$R 'OFGroupBox.dcr'}
+{$R 'OFCtrlLabel.dcr'}
+{$R 'OFValueComboBox.dcr'}
+{$ALIGN 8}
+{$ASSERTIONS ON}
+{$BOOLEVAL OFF}
+{$DEBUGINFO ON}
+{$EXTENDEDSYNTAX ON}
+{$IMPORTEDDATA ON}
+{$IOCHECKS ON}
+{$LOCALSYMBOLS ON}
+{$LONGSTRINGS ON}
+{$OPENSTRINGS ON}
+{$OPTIMIZATION ON}
+{$OVERFLOWCHECKS OFF}
+{$RANGECHECKS OFF}
+{$REFERENCEINFO ON}
+{$SAFEDIVIDE OFF}
+{$STACKFRAMES OFF}
+{$TYPEDADDRESS OFF}
+{$VARSTRINGCHECKS ON}
+{$WRITEABLECONST OFF}
+{$MINENUMSIZE 1}
+{$IMAGEBASE $400000}
+{$DESCRIPTION 'OF Komponenten'}
+{$IMPLICITBUILD OFF}
+
+requires
+  rtl,
+  vcl,
+  vcljpg,
+  dbrtl,
+  vcldb,
+  JvCoreD7R,
+  Jcl,
+  JvStdCtrlsD7R,
+  JvDBD7R,
+  JvMMD7R;
+
+contains
+  OFGroupBox in 'OFGroupBox.pas',
+  OFCtrlLabel in 'OFCtrlLabel.pas',
+  OFValueComboBox in 'OFValueComboBox.pas';
+
+end.

@@ -16,7 +16,7 @@
 {                                                                              }
 {       ******* Open-Faktura comes with ABSOLUTELY NO WARRANTY *******         }
 {******************************************************************************}
-{ $Id:$ }
+{ $Id$ }
 {                                                                              }
 { TODO:                                                                        }
 { - Line 99: Add proper License Info                                           }

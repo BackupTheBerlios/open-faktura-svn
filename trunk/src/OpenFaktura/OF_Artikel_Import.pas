@@ -16,7 +16,7 @@
 {                                                                              }
 {       ******* Open-Faktura comes with ABSOLUTELY NO WARRANTY *******         }
 {******************************************************************************}
-{ $Id:$ }
+{ $Id$ }
 {                                                                              }
 { TODO:                                                                        }
 { - Messdaten obsolet! Präzisieren oder entfernen, da nicht aussagekräftig     }

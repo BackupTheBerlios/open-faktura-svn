@@ -17,20 +17,20 @@
 {       ******* Open-Faktura comes with ABSOLUTELY NO WARRANTY *******         }
 {******************************************************************************}
 { $Id$ }
-{                                                                              }
-{ TODO:                                                                        }
-{ - Dialog und Funktion fertigstellen                                          }
-{ -                                                                            }
-{                                                                              }
-{ ISSUES, NOTES:                                                               }
-{ -                                                                            }
-{                                                                              }
-{ HISTORY:                                                                     }
-{ 03.05.2003 - Unit erstellt Jan Pokrandt                                      }
-{ 06.11.2004 - Unit für Mehrsprachigkeit vorbereitet (GNU-Gettext)             }
-{ 30.10.2009 - UD: Initiale Version (CAO Fork by Open-Faktura Projekt)         }
-{                                                                              }
-{******************************************************************************}
+(*******************************************************************************
+  TODO:
+  - Dialog und Funktion fertigstellen
+  -
+
+  ISSUES, NOTES:
+  -
+
+  HISTORY:
+  03.05.2003 - Unit erstellt Jan Pokrandt
+  06.11.2004 - Unit für Mehrsprachigkeit vorbereitet (GNU-Gettext)
+  30.10.2009 - UD: Initiale Version (CAO Fork by Open-Faktura Projekt)
+  28.11.2009 - UD: "MainDir" entfällt, durch "APP_PATH" ersetzt.
+*******************************************************************************)
 
 unit OF_Restore;
 
@@ -109,8 +109,9 @@ type
 implementation
 
 uses
-  DB, ZExtra, FileCtrl, GNUGetText,
-  OF_DM, OF_Logging, OF_Register;
+  DB, GNUGetText,
+  OF_Var_Const, OF_DM, OF_Logging, OF_Register;
+  //ZExtra, FileCtrl, 
 
 {$R *.DFM}
 
@@ -341,7 +342,7 @@ begin
           try
             while not Eof(TF) do
             begin
-              Readln (TF, S); 
+              Readln (TF, S);
               h := h + S + #13#10;
               Inc(I);
               if I >= 10 then 
@@ -455,7 +456,7 @@ begin
 
   try
     Result := False;
-    rpfad := dm1.maindir + 'Restore\';
+    rpfad := APP_PATH + 'Restore\';
 
     rp := DM1.Readstring ('MAIN\SICHERUNG', 'RESTORE_PFAD', '@@@');
     if rp = '@@@' then

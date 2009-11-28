@@ -17,28 +17,36 @@
 {       ******* Open-Faktura comes with ABSOLUTELY NO WARRANTY *******         }
 {******************************************************************************}
 { $Id$ }
-{                                                                              }
-{ TODO:                                                                        }
-{ -                                                                            }
-{                                                                              }
-{ ISSUES, NOTES:                                                               }
-{ -                                                                            }
-{                                                                              }
-{ HISTORY:                                                                     }
-{ 13.01.2003 - Version 1.0.0.48 released Jan Pokrandt }
-{ 26.04.2003 - Version 1.0.0.53 released Jan Pokrandt }
-{ 01.07.2003 - Anpassungen an MandantRec }
-{ 27.07.2003 - diverse Änderungen im Shop-Bereich }
-{ 30.07.2003 - KL Hersteller-ID bei tShopArtikel hinzugefügt }
-{ 30.10.2009 - UD: Initiale Version (CAO Fork by Open-Faktura Projekt)         }
-{                                                                              }
-{******************************************************************************}
+(*******************************************************************************
+  TODO:
+  - Diese Unit durch eine Singleton Klasse ersetzen.
+
+  ISSUES, NOTES:
+  -
+
+  HISTORY:
+  13.01.2003 - Version 1.0.0.48 released Jan Pokrandt
+  26.04.2003 - Version 1.0.0.53 released Jan Pokrandt
+  01.07.2003 - Anpassungen an MandantRec
+  27.07.2003 - diverse Änderungen im Shop-Bereich
+  30.07.2003 - KL Hersteller-ID bei tShopArtikel hinzugefügt
+  30.10.2009 - UD: Initiale Version (CAO Fork by Open-Faktura Projekt)
+  28.11.2009 - UD:
+               - Konstante für die Konfigurationsdatei hinzugefügt und
+                 von "CAO32_DB.cfg" in "OF_CFG.INI" umbenannt.
+               - Globale Variable "APP_PATH" hinzugefügt.
+               - Konstante "CFG_FORMULAR_FILENAME", "CFG_PLZ_FILENAME",
+                 "CFG_BLZ_FILENAME", "CFG_LAND_FILENAME" hinzugefügt.
+*******************************************************************************)
 
 unit OF_Var_Const;
 
 {$I OF.INC}
 
 interface
+
+uses
+  SysUtils;
 
 type
   tShopArtikelTyp = (saArtikel, saTKosten, saMMZuschlag);
@@ -293,6 +301,11 @@ type
 
 const
   GNU: Boolean = True;
+  CFG_FILENAME = 'OF_CFG.INI'; //28.11.09-ud.
+  CFG_FORMULAR_FILENAME = 'formulare.of'; //28.11.09-ud.
+  CFG_PLZ_FILENAME = 'plz.of'; //28.11.09-ud.
+  CFG_BLZ_FILENAME = 'blz.of'; //28.11.09-ud.
+  CFG_LAND_FILENAME = 'land.of'; //28.11.09-ud.
 
   BANK1         = 1201;
   KASSE1        = 1301;
@@ -474,8 +487,15 @@ const
     'WARTUNG'
   );
 
+var
+  APP_PATH: string; //28.11.09-ud.
 
 implementation
+
+initialization
+  APP_PATH := ExtractFilePath(ParamStr(0));
+
+finalization
 
 end.
 

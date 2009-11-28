@@ -17,63 +17,64 @@
 {       ******* Open-Faktura comes with ABSOLUTELY NO WARRANTY *******         }
 {******************************************************************************}
 { $Id$ }
-{                                                                              }
-{ TODO:                                                                        }
-{ -                                                                            }
-{                                                                              }
-{ ISSUES, NOTES:                                                               }
-{ -                                                                            }
-{                                                                              }
-{ HISTORY:                                                                     }
-{ 13.01.2003 - Version 1.0.0.48 released Jan Pokrandt }
-{ 20.01.2003 - durch Doppelklick auf das Beschriftungsfeld "Name1" }
-{              kann man einen Outlook-Kontakt anlegen }
-{            - durch Doppelklick auf das Beschriftungsfeld "Geburtsdatum" }
-{              kann man einen Outlook-Termin anlegen }
-{            - durch Doppelklick auf das Beschriftungsfeld "eMail" }
-{              wird der Default-eMail-Clint für eine neue Mail geöffnet }
-{            - durch Doppelklick auf das Beschriftungsfeld "Internet" }
-{              wird der Default-Browser mit der übergebenen Web-Seite geöffnet }
-{            - RX-Komponenten durch JEDI-VCL-Komponenten ersetzt }
-{ 26.04.2003 - im Menü Extras neuen Menüpunkt "Kundennummer zuweisen" hinzugefügt }
-{ 09.05.2003 - Bug bei der Auswahl aus dem PLZ-Stamm gefixt (Daten wurden nicht übernommen) }
-{ 12.05.2003 - beim Erstellen eines Kunden wird jetzt der Ort+Vorwahl aus der }
-{              PLZ-Datenbank automatisch übernommen, wenn es zu dieser PLZ exakt }
-{              einen Ort gibt. }
-{ 26.05.2003 - Historie um Angebote, Lieferscheine und EK-Bestellungen erweitert }
-{ 31.05.2003 - neue Felder für MwSt-Frei, Brutto-Berechnen und UmsatzSteuer-ID }
-{              hinzugefügt }
-{ 14.06.2003 - Bug (Kundennummer, Debitoren- und Kreditorennummer) waren in der }
-{              Listenansicht editierbar, jetzt Readonly }
-{ 15.06.2003 - Ansprechpartner um Anrede, Straße, Land, PLZ, ort und Geburtdatum }
-{              erweitert }
-{            - Outlook-Funktionalität für Ansprechpartner-Geburtstagstermin }
-{            - Mail-Funktion für Ansprechpartner-Email }
-{ 16.06.2003 - Das Tabsheet KFZ wird jetzt versteckt wenn die KFZ-Funktion in der }
-{              SQL-Registry (MAIN->USE_KFZ=0) agbeschaltet ist }
-{ 24.06.2003 - Code für Adressen-Import eingefügt }
-{ 05.07.2003 - Länge von Kontonumer und BLZ kann jetzt in der Registry }
-{              eingestellt werden }
-{ 02.08.2003 - Kundennummer (1) kann jetzt bearbeitet werden }
-{ 14.08.2003 - KL: Auswahl für Bankleitzahlen hinzugefügt }
-{ 18.08.2003 - neues Feld Kontoinhaber zum Adressstamm hinzugefügt }
-{ 20.08.2003 - Multiple Lieferanschriften eingebaut, neuen Dialog zur Berabeitung }
-{              eine Lieferanschrift kann als "Default" gesetzt werden }
-{ 06.09.2003 - Eingestelltes Suchfeld wird jetzt gespeichert und wieder }
-{              hergestellt }
-{            - Sortierung wird gespeichert und wieder hergestellt }
-{            - Vertreterprovision hinzugefügt }
-{ 20.09.2003 - Merkmal-Anzeige eingebaut }
-{ 25.10.2003 - neues Menü erstellt, damit aus dem Adress-Stamm jetzt auch neue }
-{              Vorgänge erzeugt werden können }
-{ 09.11.2003 - Fix: Bug bei Suche ohne Ergebnis mit anschließendem Enter }
-{ 22.11.2003 - DLL-Plugin-Schnittstelle implementiert }
-{ 02.12.2003 - die Kundennummer wird jetzt mit Hilfe des Nummernformates erzeugt }
-{ 18.01.2004 - TAPI-Aufrufe bei Ansprechpartner/Telefon hinzugefügt }
-{ 21.10.2004 - Unit für Mehrsprachigkeit vorbereitet (GNU-Gettext) }
-{ 30.10.2009 - UD: Initiale Version (CAO Fork by Open-Faktura Projekt)         }
-{                                                                              }
-{******************************************************************************}
+(*******************************************************************************
+  TODO:
+  -
+
+  ISSUES, NOTES:
+  -
+
+  HISTORY:
+  13.01.2003 - Version 1.0.0.48 released Jan Pokrandt
+  20.01.2003 - durch Doppelklick auf das Beschriftungsfeld "Name1"
+               kann man einen Outlook-Kontakt anlegen
+             - durch Doppelklick auf das Beschriftungsfeld "Geburtsdatum"
+               kann man einen Outlook-Termin anlegen
+             - durch Doppelklick auf das Beschriftungsfeld "eMail"
+               wird der Default-eMail-Clint für eine neue Mail geöffnet
+             - durch Doppelklick auf das Beschriftungsfeld "Internet"
+               wird der Default-Browser mit der übergebenen Web-Seite geöffnet
+             - RX-Komponenten durch JEDI-VCL-Komponenten ersetzt
+  26.04.2003 - im Menü Extras neuen Menüpunkt "Kundennummer zuweisen" hinzugefügt
+  09.05.2003 - Bug bei der Auswahl aus dem PLZ-Stamm gefixt (Daten wurden nicht übernommen)
+  12.05.2003 - beim Erstellen eines Kunden wird jetzt der Ort+Vorwahl aus der
+               PLZ-Datenbank automatisch übernommen, wenn es zu dieser PLZ exakt
+               einen Ort gibt.
+  26.05.2003 - Historie um Angebote, Lieferscheine und EK-Bestellungen erweitert
+  31.05.2003 - neue Felder für MwSt-Frei, Brutto-Berechnen und UmsatzSteuer-ID
+               hinzugefügt
+  14.06.2003 - Bug (Kundennummer, Debitoren- und Kreditorennummer) waren in der
+               Listenansicht editierbar, jetzt Readonly
+  15.06.2003 - Ansprechpartner um Anrede, Straße, Land, PLZ, ort und Geburtdatum
+               erweitert
+             - Outlook-Funktionalität für Ansprechpartner-Geburtstagstermin
+             - Mail-Funktion für Ansprechpartner-Email
+  16.06.2003 - Das Tabsheet KFZ wird jetzt versteckt wenn die KFZ-Funktion in der
+               SQL-Registry (MAIN->USE_KFZ=0) agbeschaltet ist
+  24.06.2003 - Code für Adressen-Import eingefügt
+  05.07.2003 - Länge von Kontonumer und BLZ kann jetzt in der Registry
+               eingestellt werden
+  02.08.2003 - Kundennummer (1) kann jetzt bearbeitet werden
+  14.08.2003 - KL: Auswahl für Bankleitzahlen hinzugefügt
+  18.08.2003 - neues Feld Kontoinhaber zum Adressstamm hinzugefügt
+  20.08.2003 - Multiple Lieferanschriften eingebaut, neuen Dialog zur Berabeitung
+               eine Lieferanschrift kann als "Default" gesetzt werden
+  06.09.2003 - Eingestelltes Suchfeld wird jetzt gespeichert und wieder
+               hergestellt
+             - Sortierung wird gespeichert und wieder hergestellt
+             - Vertreterprovision hinzugefügt
+  20.09.2003 - Merkmal-Anzeige eingebaut
+  25.10.2003 - neues Menü erstellt, damit aus dem Adress-Stamm jetzt auch neue
+               Vorgänge erzeugt werden können
+  09.11.2003 - Fix: Bug bei Suche ohne Ergebnis mit anschließendem Enter
+  22.11.2003 - DLL-Plugin-Schnittstelle implementiert
+  02.12.2003 - die Kundennummer wird jetzt mit Hilfe des Nummernformates erzeugt
+  18.01.2004 - TAPI-Aufrufe bei Ansprechpartner/Telefon hinzugefügt
+  21.10.2004 - Unit für Mehrsprachigkeit vorbereitet (GNU-Gettext)
+  30.10.2009 - UD: Initiale Version (CAO Fork by Open-Faktura Projekt)
+  28.11.2009 - UD: Funktionsaufruf "ExtractFilePath(ParamStr(0))" durch die
+                   Globale Variaiable "APP_PATH" ersetzt.
+*******************************************************************************)
 
 unit OF_KUNDE;
 
@@ -894,7 +895,7 @@ begin
     DLLName := DM1.ReadString ('MAIN\ADRESSEN', 'SUCH_DLL', '');
 
     if Pos('%APPDIR%', DLLName) > 0 then 
-      StrReplace (DLLName, '%APPDIR%', ExtractFilePath(Paramstr(0)), []);
+      StrReplace (DLLName, '%APPDIR%', APP_PATH, []);
 
     if assigned(LogForm) then
       logform.addlog (_('ADRESSEN: DLL ') + DLLName);

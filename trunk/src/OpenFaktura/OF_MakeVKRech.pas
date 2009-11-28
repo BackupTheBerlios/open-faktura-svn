@@ -868,7 +868,7 @@ var
 implementation
 
 uses
-  GNUGetText, ZSqlTypes,
+  GNUGetText,
   OF_DM, OF_Tool1, OF_Function, OF_Progress, OF_Main,
   {$IFDEF WITH_REPORT}
   OF_FreePrintRech,
@@ -876,6 +876,7 @@ uses
   OF_LiefExport_Dlg, OF_TeilLieferDlg, OF_KFZ1, OF_SN_Auswahl,
   OF_Adressen_Lief, OF_DBGrid_Layout,
   OF_Artikel1, OF_Kunde;
+  //OLD: ZSqlTypes,
 
 {$R *.DFM}
 
@@ -3121,7 +3122,7 @@ begin
   begin
     dm1.uniquery.close;
     dm1.uniquery.sql.text := 'select REC_ID, KUNNUM1 from ADRESSEN' +
-      ' where KUNNUM1="' + ZSqlTypes.StringToSql(ReEdiTabKUN_NUM.AsString) + '"';
+      ' where KUNNUM1="' + sqlStringToSQL(ReEdiTabKUN_NUM.AsString) + '"';
     dm1.uniquery.open;
 
     if dm1.uniquery.recordcount = 1 then

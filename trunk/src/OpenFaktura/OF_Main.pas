@@ -17,44 +17,46 @@
 {       ******* Open-Faktura comes with ABSOLUTELY NO WARRANTY *******         }
 {******************************************************************************}
 { $Id$ }
-{                                                                              }
-{ TODO:                                                                        }
-{ - Alpha-Code und ifdef AVE u. PRO entfernen                                  }
-{ - cao_menu usw. anpassen an OF                                               }
-{ - Windows Registry Keys (SBP) auf Funktion prüfen u. ggf. entfernen          }
-{ - Online Update und URLs prüfen, ändern oder entfernen                       }
-{                                                                              }
-{                                                                              }
-{ ISSUES, NOTES:                                                               }
-{ -                                                                            }
-{                                                                              }
-{ HISTORY:                                                                     }
-{ 13.01.2003 - Version 1.0.0.48 released Jan Pokrandt }
-{ 17.01.2003 - Warnmeldung eingebaut, wenn Plattform nicht Windows NT, 2000 oder XP }
-{ 01.02.2003 - Outlook-Bar durch Komponente aus der Jedi-VCL ersetzt }
-{ 19.02.2003 - URL im Online-Update korrigiert }
-{ 26.04.2003 - Link zum Anwenderforum im Hilfemenü hinzugefügt }
-{ 15.05.2003 - Caption der Form geändert, wenn GNU - Version compiliert wird }
-{ 14.06.2003 - Einbindung des ShopTransfer - Modules }
-{ 06.07.2003 - Neue Buttons im Outlookbar hinzugefügt }
-{ 13.07.2003 - Menü für Mandanten geändert }
-{ 19.07.2003 - FiBu-Buchungen und -Konten entfernt }
-{ 22.07.2003 - neues Shopsetup eingebunden }
-{ 29.07.2003 - DP: HTML-Hilfe + Wartungsdaten eingebunden }
-{ 02.08.2003 - Online-Update deaktiviert }
-{ 29.08.2003 - Module werden jetzt über die Tag-Eigenschaft der Buttons ausgewählt }
-{ 23.10.2003 - PIM wird jetzt automatisch gestartet, }
-{              damit das Termin-Popup bei fälligen Terminen kommt }
-{ 25.10.2003 - JumpTo um neue Vorgänge erweitert }
-{ 12.03.2004 - neuen Hotkey ALT+F12 für "Zurück" eingebaut }
-{ 23.10.2004 - Unit für Mehrsprachigkeit vorbereitet (GNU - Gettext) }
-{ 29.09.2009 - UD:
-               - Vorbereitungen für Open-Faktura. }
-{              - Aufruf von "CAO_TextEdit.pas" und Direktive "WPTOOLS" entfernt. }
-{              - Aufruf vom TERMINMANAGER von KommPuter entfernt. }
-{ 30.10.2009 - UD: Initiale Version (CAO Fork by Open-Faktura Projekt)         }
-{                                                                              }
-{******************************************************************************}
+(*******************************************************************************
+  TODO:
+  - Alpha-Code und ifdef AVE u. PRO entfernen
+  - cao_menu usw. anpassen an OF
+  - Windows Registry Keys (SBP) auf Funktion prüfen u. ggf. entfernen
+  - Online Update und URLs prüfen, ändern oder entfernen
+
+  ISSUES, NOTES:
+  -
+
+  HISTORY:
+  13.01.2003 - Version 1.0.0.48 released Jan Pokrandt
+  17.01.2003 - Warnmeldung eingebaut, wenn Plattform nicht Windows NT, 2000 oder XP
+  01.02.2003 - Outlook-Bar durch Komponente aus der Jedi-VCL ersetzt
+  19.02.2003 - URL im Online-Update korrigiert
+  26.04.2003 - Link zum Anwenderforum im Hilfemenü hinzugefügt
+  15.05.2003 - Caption der Form geändert, wenn GNU - Version compiliert wird
+  14.06.2003 - Einbindung des ShopTransfer - Modules
+  06.07.2003 - Neue Buttons im Outlookbar hinzugefügt
+  13.07.2003 - Menü für Mandanten geändert
+  19.07.2003 - FiBu-Buchungen und -Konten entfernt
+  22.07.2003 - neues Shopsetup eingebunden
+  29.07.2003 - DP: HTML-Hilfe + Wartungsdaten eingebunden
+  02.08.2003 - Online-Update deaktiviert
+  29.08.2003 - Module werden jetzt über die Tag-Eigenschaft der Buttons ausgewählt
+  23.10.2003 - PIM wird jetzt automatisch gestartet,
+               damit das Termin-Popup bei fälligen Terminen kommt
+  25.10.2003 - JumpTo um neue Vorgänge erweitert
+  12.03.2004 - neuen Hotkey ALT+F12 für "Zurück" eingebaut
+  23.10.2004 - Unit für Mehrsprachigkeit vorbereitet (GNU - Gettext)
+  29.09.2009 - UD:
+               - Vorbereitungen für Open-Faktura.
+               - Aufruf von "CAO_TextEdit.pas" und Direktive "WPTOOLS" entfernt.
+               - Aufruf vom TERMINMANAGER von KommPuter entfernt.
+  30.10.2009 - UD: Initiale Version (CAO Fork by Open-Faktura Projekt)
+  28.11.2009 - UD:
+               - Konstante für die Konfigurationsdatei hinzugefügt.
+               - Funktionsaufruf "ExtractFilePath(ParamStr(0))" durch die
+                 Globale Variaiable "APP_PATH" ersetzt.
+*******************************************************************************)
 
 unit OF_Main;
 
@@ -279,7 +281,7 @@ implementation
 
 uses
   GNUGetText,
-  {JvAppUtils,} JvJVCLUtils, IniFiles, ShellApi, FileCtrl,
+  {JvAppUtils,} JvJVCLUtils, IniFiles, ShellApi,
 
   OF_DM, OF_Var_Const, OF_Tool1,
 
@@ -315,6 +317,8 @@ uses
   {$ENDIF}
 
   VolPeriod, OF_About, OF_Vertreter;
+
+  //OLD: FileCtrl,
 
 (*
   //Pitti
@@ -424,7 +428,7 @@ begin
 
   //-------------------------------------------------------------------------
 
-  if fileexists(ExtractFilePath(ParamStr(0)) + 'cao_menu.txt') then
+  if fileexists(APP_PATH + 'cao_menu.txt') then
   begin
     while OLBar.Pages.Count > 0 do
     begin
@@ -439,7 +443,7 @@ begin
     sl2 := tStringList.Create;
 
     try
-      ini := tIniFile.Create(ExtractFilePath(ParamStr(0)) + 'cao_menu.txt');
+      ini := tIniFile.Create(APP_PATH + 'cao_menu.txt');
       try
         ini.ReadSections(sl1);
 
@@ -547,16 +551,14 @@ begin
   OnUpdateStatusBar('', '', '', '', '');
 
   // auf Dateiupdate des Online-Updaters prüfen
-  if fileexists(extractfilepath(paramstr(0)) + 'cao_update.exe.dat') then
+  if fileexists(APP_PATH + 'cao_update.exe.dat') then
   begin
-    if fileexists(extractfilepath(paramstr(0)) + 'cao_update.exe.old') then
-      deletefile(extractfilepath(paramstr(0)) + 'cao_update.exe.old');
+    if fileexists(APP_PATH + 'cao_update.exe.old') then
+      deletefile(APP_PATH + 'cao_update.exe.old');
 
-    renamefile(extractfilepath(paramstr(0)) + 'cao_update.exe',
-    extractfilepath(paramstr(0)) + 'cao_update.exe.old');
+    renamefile(APP_PATH + 'cao_update.exe', APP_PATH + 'cao_update.exe.old');
 
-    renamefile(extractfilepath(paramstr(0)) + 'cao_update.exe.dat',
-    extractfilepath(paramstr(0)) + 'cao_update.exe');
+    renamefile(APP_PATH + 'cao_update.exe.dat', APP_PATH + 'cao_update.exe');
   end;
 
   if Assigned(SScreen) then
@@ -1126,12 +1128,12 @@ var
 begin
   {$IFDEF PRO}
   try
-    if fileexists(extractfilepath(paramstr(0)) + 'cao_update.ini') then
-      sysutils.deletefile(extractfilepath(paramstr(0)) + 'cao_update.ini');
+    if fileexists(APP_PATH + 'cao_update.ini') then
+      sysutils.deletefile(APP_PATH + 'cao_update.ini');
 
     Screen.Cursor := crHourGlass;
     try
-      ini := tinifile.create(extractfilepath (paramstr(0)) + 'cao32_db.cfg');
+      ini := TIniFile.create(APP_PATH + CFG_FILENAME);
       try
         URL          := ini.readstring('UPDATE', 'UPDATE_SERVER', 'http://www.ave-rassmann.de/cao/');
         HTTP_USER    := ini.readstring('UPDATE', 'UPDATE_USER'  , 'cao-faktura');
@@ -1207,7 +1209,7 @@ begin
         begin
           MyStream.Position := 0;
           if MyStream.Size > 0 then
-            MyStream.SaveToFile(extractfilepath(paramstr(0)) + 'cao_update.ini');
+            MyStream.SaveToFile(APP_PATH + 'cao_update.ini');
         end;
 
         HTTP1.free;
@@ -1217,15 +1219,15 @@ begin
       Screen.Cursor := crDefault;
     end;
 
-    if fileexists(extractfilepath(paramstr(0)) + 'cao_update.ini') then
+    if fileexists(APP_PATH + 'cao_update.ini') then
     begin
       // Auf Update Prüfen ...
 
       up := False;
 
-      ini := tinifile.create(extractfilepath (paramstr(0)) + 'cao_update.ini');
+      ini := tinifile.create(APP_PATH + 'cao_update.ini');
       try
-        cfg := tinifile.create(extractfilepath(paramstr(0)) + 'cao32_db.cfg');
+        cfg := tinifile.create(APP_PATH + CFG_FILENAME);
         try
           for i := 1 to 100 do
           begin
@@ -1255,9 +1257,7 @@ begin
              mtconfirmation, mbyesnocancel, 0) = mryes then
         begin
           //Update-Prg. starten
-          DM1.StarteNewProgramm(extractfilepath (paramstr(0)) +
-            'cao_update.exe', '',
-            extractfilepath (paramstr(0)));
+          DM1.StarteNewProgramm(APP_PATH + 'cao_update.exe', '', APP_PATH);
 
           //Beenden...
           DM1.CaoSecurity.CurrUser := '';

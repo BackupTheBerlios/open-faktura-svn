@@ -536,12 +536,12 @@ implementation
 
 uses
   GNUGetText,
-  //ZSqlTypes, {JvDateUtil,}
   OF_DM, OF_Tool1, OF_Function, OF_Main,
   {$IFDEF WITH_REPORT}
   OF_FreePrintRech,
   {$ENDIF}
   OF_DBGrid_Layout, OF_Artikel1, OF_Kunde;
+  //OLD: ZSqlTypes, JvDateUtil,
 
 {$R *.DFM}
 

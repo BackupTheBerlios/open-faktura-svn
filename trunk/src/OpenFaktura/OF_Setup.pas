@@ -17,33 +17,33 @@
 {       ******* Open-Faktura comes with ABSOLUTELY NO WARRANTY *******         }
 {******************************************************************************}
 { $Id$ }
-{                                                                              }
-{ TODO:                                                                        }
-{ - Backup-Hinweisdialog                                                       }
-{ -                                                                            }
-{                                                                              }
-{ ISSUES, NOTES:                                                               }
-{ -                                                                            }
-{                                                                              }
-{ HISTORY:                                                                     }
-{ 13.01.2003 - Version 1.0.0.48 released Jan Pokrandt }
-{ 10.05.2003 - allg. Firmendaten hinzugefügt (werden in allen Formularen verw.) }
-{ 25.06.2003 - neues Tabsheet für die Shopeinstellungen hinzugefügt }
-{ 29.06.2003 - neues Tabsheet für Allg. Einstellungen hinzugefügt, Kosmetik ... }
-{ 25.07.2003 - Shop-Einstellungen entfernt und in einem sep. Dialog untergebracht }
-{ 20.09.2003 - Adresse und Kundenmerkmale eingebaut }
-{            - Pfade für Backup, DTA, Im- und Export eingebaut }
-{            - Benutzerfelder für Artikel und Adressen eingebaut }
-{ 22.09.2003 - Warengruppen ausgebaut, jetzt sind auch die Kalkulationsfaktoren }
-{              und die Default-MwSt editierbar }
-{ 07.12.2003 - neue Seite FiBu hinzugefügt }
-{ 11.12.2003 - Update des Shop_Change_Flag nach neuberechnen der Preise }
-{              (über Kalkulationsfaktor) implementiert }
-{ 13.03.2004 - Liste bei den Firmenkonten eingefügt }
-{ 06.11.2004 - Unit für Mehrsprachigkeit vorbereitet (GNU-Gettext) }
-{ 30.10.2009 - UD: Initiale Version (CAO Fork by Open-Faktura Projekt)         }
-{                                                                              }
-{******************************************************************************}
+(*******************************************************************************
+  TODO:
+  - Backup-Hinweisdialog
+  -
+
+  ISSUES, NOTES:
+  -
+
+  HISTORY:
+  13.01.2003 - Version 1.0.0.48 released Jan Pokrandt
+  10.05.2003 - allg. Firmendaten hinzugefügt (werden in allen Formularen verw.)
+  25.06.2003 - neues Tabsheet für die Shopeinstellungen hinzugefügt
+  29.06.2003 - neues Tabsheet für Allg. Einstellungen hinzugefügt, Kosmetik ...
+  25.07.2003 - Shop-Einstellungen entfernt und in einem sep. Dialog untergebracht
+  20.09.2003 - Adresse und Kundenmerkmale eingebaut
+             - Pfade für Backup, DTA, Im- und Export eingebaut
+             - Benutzerfelder für Artikel und Adressen eingebaut
+  22.09.2003 - Warengruppen ausgebaut, jetzt sind auch die Kalkulationsfaktoren
+               und die Default-MwSt editierbar
+  07.12.2003 - neue Seite FiBu hinzugefügt
+  11.12.2003 - Update des Shop_Change_Flag nach neuberechnen der Preise
+               (über Kalkulationsfaktor) implementiert
+  13.03.2004 - Liste bei den Firmenkonten eingefügt
+  06.11.2004 - Unit für Mehrsprachigkeit vorbereitet (GNU-Gettext)
+  30.10.2009 - UD: Initiale Version (CAO Fork by Open-Faktura Projekt)
+  28.11.2009 - UD: "MainDir" entfällt, durch "APP_PATH" ersetzt.
+*******************************************************************************)
 
 unit OF_Setup;
 
@@ -378,8 +378,10 @@ type
 implementation
 
 uses
-  GNUGetText, FileCtrl, ZExtra,
-  OF_DM, OF_LiefExport_Dlg, OF_Progress, OF_Tool1;
+  GNUGetText,
+  OF_Var_Const, OF_Function, OF_DM, OF_LiefExport_Dlg, OF_Progress, OF_Tool1;
+
+  //FileCtrl,
 
 {$R *.DFM}
 
@@ -631,11 +633,11 @@ begin
   end else
   if PC1.ActivePage.Tag = 14 then //Pfade
   begin
-    BackupDirEdi.Text := DM1.ReadString ('MAIN\PFADE', 'BACKUP_DIR', DM1.MainDir + 'Backup\');
-    TempDirEdi.Text   := DM1.ReadString ('MAIN\PFADE', 'TMP_DIR', DM1.MainDir + 'Tmp\');
-    DTADirEdi.Text    := DM1.ReadString ('MAIN\PFADE', 'DTA_DIR', DM1.MainDir + 'DTA\');
-    ExportDirEdi.Text := DM1.ReadString ('MAIN\PFADE', 'EXPORT_DIR', DM1.MainDir + 'EXPORT\');
-    ImportDirEdi.Text := DM1.ReadString ('MAIN\PFADE', 'IMPORT_DIR', DM1.MainDir + 'IMPORT\');
+    BackupDirEdi.Text := DM1.ReadString ('MAIN\PFADE', 'BACKUP_DIR', APP_PATH + 'Backup\');
+    TempDirEdi.Text   := DM1.ReadString ('MAIN\PFADE', 'TMP_DIR', APP_PATH + 'Tmp\');
+    DTADirEdi.Text    := DM1.ReadString ('MAIN\PFADE', 'DTA_DIR', APP_PATH + 'DTA\');
+    ExportDirEdi.Text := DM1.ReadString ('MAIN\PFADE', 'EXPORT_DIR', APP_PATH + 'EXPORT\');
+    ImportDirEdi.Text := DM1.ReadString ('MAIN\PFADE', 'IMPORT_DIR', APP_PATH + 'IMPORT\');
   end else
   if PC1.ActivePage.Tag = 17 then //Fibu
   begin
@@ -1060,10 +1062,10 @@ begin
       begin
         S := S + 'update ARTIKEL set ' +
           'VK' + Inttostr(V) + ' = round( EK_PREIS * ' +
-          FloatToStrEx(F) +
+          sqlFloatToStr(F) +
           ' * ' + NKF + ' ) / ' + NKF + ',' +
           'VK' + Inttostr(V) + 'B = round( VK' + Inttostr(V) + ' * (100+' +
-          FloatToStrEx(DM1.MwstTab[ST]) + ') / ' +
+          sqlFloatToStr(DM1.MwstTab[ST]) + ') / ' +
           InttoStr(DM1.BR_RUND_WERT) +
           ' ) * ' + InttoStr(DM1.BR_RUND_WERT) + ' / 100' +
           ' where WARENGRUPPE=' + Inttostr(DM1.WgrTabID.AsInteger) +

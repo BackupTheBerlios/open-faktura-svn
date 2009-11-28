@@ -17,70 +17,71 @@
 {       ******* Open-Faktura comes with ABSOLUTELY NO WARRANTY *******         }
 {******************************************************************************}
 { $Id$ }
-{                                                                              }
-{ TODO:                                                                        }
-{ -                                                                            }
-{                                                                              }
-{ ISSUES, NOTES:                                                               }
-{ -                                                                            }
-{                                                                              }
-{ HISTORY:                                                                     }
-{ 13.01.2003 - Version 1.0.0.48 released Jan Pokrandt }
-{ 15.05.2003 - Referenzen auf die RX-Tools entfernt und auf JediVCL umgestellt }
-{ 18.05.2003 - Anpassungen für neue DB }
-{            - Neue Eingabefelder für Menge-Bestellt und Bestellvorschlag }
-{ 26.05.2003 - Historie um Angebote, Bestellungen und unfertige Belege erweitert }
-{            - VK-Rabattgruppen und VK-Preis Feldbehandlung implementiert }
-{ 31.05.2003 - Feld Artikelnummer wird jetzt bei der Eingabe auf doppeltes Vor- }
-{              kommen geprüft und der Hintergrund rot angezeigt }
-{ 10.06.2003 - Bug im MwSt-Auswahlfeld beseitigt }
-{ 13.06.2003 - ShopEditor implementiert }
-{ 22.06.2003 - Bedingte Compilierung für Artikel-Import entfernt, da Import jetzt }
-{              auch im GNU-Source enthalten ist. }
-{ 26.06.2003 - Die Übernahme des Kurztextes in den Langtext kann jetzt in der }
-{              Registry MAIN\ARTIKEL->KURZTEXT_TO_LANGTEXT mit (0,1) ein- bzw. }
-{              ausgeschaltet werden }
-{ 29.06.2003 - Bug in Sortierung nach EK, VK1-VK4 gefixt (berechnete Felder) }
-{ 05.07.2003 - Das Feld Suchbegriff auf 200 Zeichen verlängert }
-{ 22.07.2003 - Funktion im Shop für Bilder-Upload hinzugefügt }
-{ 25.07.2003 - diverse Feldänderungen im Shopbereich }
-{ 27.07.2003 - neue Funktion für Artikel-Export hinzugefügt }
-{            - Komponenten tSynEdit für den HTML-Shop-Langtext eingebaut }
-{ 30.07.2003 - Bug bei Sortierung nach EK-Preis beseitigt }
-{ 01.08.2003 - Default-Kalkulation über Faktoren eingebaut }
-{ 02.08.2003 - Berechnung der Bruttopreise VK1B - VK5B hinzugefügt }
-{ 20.08.2003 - Multiple Lieferantenpreise u. Bestellnummern jetzt möglich }
-{              Ein Lieferantenpreis kann als "Default" gesetzt werden }
-{ 27.08.2003 - Feld für abweichende Vertreterprovision eingebaut }
-{ 06.08.2003 - Staffelpreise fertiggestellt }
-{            - Eingestelltes Suchfeld wird jetzt gespeichert und wieder }
-{              hergestellt }
-{            - Sortierung wird gespeichert und wieder hergestellt }
-{ 20.09.2003 - Merkmal-Anzeige eingebaut }
-{            - Artikel-Stückliste um EK-Preis und Preissummierung erweitert }
-{              EK-Summe kann jetzt als EK-Preis übernommen werden }
-{ 25.09.2003 - sehr viele Änderungen an der Preisberechnung, Datenfelder und }
-{              Edits werden jetzt über Tabellen angesprochen, somit sind auch }
-{              Schleifen zur Berechnung möglich }
-{ 16.10.2003 - neues Feld Hersteller-Artikelnummer hinzugefügt }
-{ 17.10.2003 - die automatische Vergabe der Artikelnummern kann jetzt per }
-{              Menüeintrag nachträglich erzwungen werden }
-{ 22.10.2003 - Suche um Hersteller-Artikelnummer erweitert }
-{            - Liste um Brutto-VK's erweitert }
-{ 09.11.2003 - Bug bei Suche ohne Ergebnis mit anschließendem Enter gefixt }
-{ 22.11.2003 - DLL-Plugin-Schnittstelle implementiert }
-{ 16.01.2004 - Beim Erstellen des Langtextes aus einer Stückliste wird jetzt }
-{              die Menge mit übernommen }
-{ 26.06.2004 - Sortierung der Merkmale (Ausgewählt, Alpha) hinzugefügt }
-{ 11.08.2004 - Bug bei extrem vielen Warengruppen (>500) beseitigt }
-{              (erster Start des Artikelmoduls dauerte bis zu 5 Minuten) }
-{ 21.10.2004 - Unit für Mehrsprachigkeit vorbereitet (GNU-Gettext) }
-{ 24.11.2004 - Druckfunktionen in unit _printrech.pas verschoben. }
-{ 26.02.2005 - Stornorechnungen werden jetzt in der Historie nicht mehr }
-{              angezeigt }
-{ 30.10.2009 - UD: Initiale Version (CAO Fork by Open-Faktura Projekt)         }
-{                                                                              }
-{******************************************************************************}
+(*******************************************************************************
+  TODO:
+  -
+
+  ISSUES, NOTES:
+  -
+
+  HISTORY:
+  13.01.2003 - Version 1.0.0.48 released Jan Pokrandt
+  15.05.2003 - Referenzen auf die RX-Tools entfernt und auf JediVCL umgestellt
+  18.05.2003 - Anpassungen für neue DB
+             - Neue Eingabefelder für Menge-Bestellt und Bestellvorschlag
+  26.05.2003 - Historie um Angebote, Bestellungen und unfertige Belege erweitert
+             - VK-Rabattgruppen und VK-Preis Feldbehandlung implementiert
+  31.05.2003 - Feld Artikelnummer wird jetzt bei der Eingabe auf doppeltes Vor-
+               kommen geprüft und der Hintergrund rot angezeigt
+  10.06.2003 - Bug im MwSt-Auswahlfeld beseitigt
+  13.06.2003 - ShopEditor implementiert
+  22.06.2003 - Bedingte Compilierung für Artikel-Import entfernt, da Import jetzt
+               auch im GNU-Source enthalten ist.
+  26.06.2003 - Die Übernahme des Kurztextes in den Langtext kann jetzt in der
+               Registry MAIN\ARTIKEL->KURZTEXT_TO_LANGTEXT mit (0,1) ein- bzw.
+               ausgeschaltet werden
+  29.06.2003 - Bug in Sortierung nach EK, VK1-VK4 gefixt (berechnete Felder)
+  05.07.2003 - Das Feld Suchbegriff auf 200 Zeichen verlängert
+  22.07.2003 - Funktion im Shop für Bilder-Upload hinzugefügt
+  25.07.2003 - diverse Feldänderungen im Shopbereich
+  27.07.2003 - neue Funktion für Artikel-Export hinzugefügt
+             - Komponenten tSynEdit für den HTML-Shop-Langtext eingebaut
+  30.07.2003 - Bug bei Sortierung nach EK-Preis beseitigt
+  01.08.2003 - Default-Kalkulation über Faktoren eingebaut
+  02.08.2003 - Berechnung der Bruttopreise VK1B - VK5B hinzugefügt
+  20.08.2003 - Multiple Lieferantenpreise u. Bestellnummern jetzt möglich
+               Ein Lieferantenpreis kann als "Default" gesetzt werden
+  27.08.2003 - Feld für abweichende Vertreterprovision eingebaut
+  06.08.2003 - Staffelpreise fertiggestellt
+             - Eingestelltes Suchfeld wird jetzt gespeichert und wieder
+               hergestellt
+             - Sortierung wird gespeichert und wieder hergestellt
+  20.09.2003 - Merkmal-Anzeige eingebaut
+             - Artikel-Stückliste um EK-Preis und Preissummierung erweitert
+               EK-Summe kann jetzt als EK-Preis übernommen werden
+  25.09.2003 - sehr viele Änderungen an der Preisberechnung, Datenfelder und
+               Edits werden jetzt über Tabellen angesprochen, somit sind auch
+               Schleifen zur Berechnung möglich
+  16.10.2003 - neues Feld Hersteller-Artikelnummer hinzugefügt
+  17.10.2003 - die automatische Vergabe der Artikelnummern kann jetzt per
+               Menüeintrag nachträglich erzwungen werden
+  22.10.2003 - Suche um Hersteller-Artikelnummer erweitert
+             - Liste um Brutto-VK's erweitert
+  09.11.2003 - Bug bei Suche ohne Ergebnis mit anschließendem Enter gefixt
+  22.11.2003 - DLL-Plugin-Schnittstelle implementiert
+  16.01.2004 - Beim Erstellen des Langtextes aus einer Stückliste wird jetzt
+               die Menge mit übernommen
+  26.06.2004 - Sortierung der Merkmale (Ausgewählt, Alpha) hinzugefügt
+  11.08.2004 - Bug bei extrem vielen Warengruppen (>500) beseitigt
+               (erster Start des Artikelmoduls dauerte bis zu 5 Minuten)
+  21.10.2004 - Unit für Mehrsprachigkeit vorbereitet (GNU-Gettext)
+  24.11.2004 - Druckfunktionen in unit _printrech.pas verschoben.
+  26.02.2005 - Stornorechnungen werden jetzt in der Historie nicht mehr
+               angezeigt
+  30.10.2009 - UD: Initiale Version (CAO Fork by Open-Faktura Projekt)
+  28.11.2009 - UD: Funktionsaufruf "ExtractFilePath(ParamStr(0))" durch die
+                   Globale Variaiable "APP_PATH" ersetzt.
+*******************************************************************************)
 
 unit OF_Artikel1;
 
@@ -1111,7 +1112,7 @@ begin
     DLLName := DM1.ReadString('MAIN\ARTIKEL', 'SUCH_DLL', '');  //Do not Localize
 
     if Pos('%APPDIR%', DLLName) > 0 then
-      StrReplace(DLLName, '%APPDIR%', ExtractFilePath(Paramstr(0)), []);
+      StrReplace(DLLName, '%APPDIR%', APP_PATH, []);
 
 
     if assigned(LogForm) then 
@@ -5804,7 +5805,7 @@ begin
   begin
     if EditHTML (HTMLStr) then
     begin
-      if not (ASQuery.State in [dsEdit, dsInsert]) then 
+      if not (ASQuery.State in [dsEdit, dsInsert]) then
         ASQuery.Edit;
       AsQueryShop_Langtext.AsString := HTMLStr;
     end;
@@ -5825,6 +5826,6 @@ finalization
       mtWarning, [mbOK], 0);
     end;
   end;
-  
+
 end.
 

@@ -17,19 +17,20 @@
 {       ******* Open-Faktura comes with ABSOLUTELY NO WARRANTY *******         }
 {******************************************************************************}
 { $Id$ }
-{                                                                              }
-{ TODO:                                                                        }
-{ - Start-Grafik ersetzen bzw. ersetzen                                        }
-{ - Logo Einbindung ermöglichen (png|jpg|bmp)                                  }
-{ - Splash-Screen abschaltbar bzw. nicht modal                                 }
-{                                                                              }
-{ ISSUES, NOTES:                                                               }
-{ -                                                                            }
-{                                                                              }
-{ HISTORY:                                                                     }
-{ 30.10.2009 - UD: Initiale Version (CAO Fork by Open-Faktura Projekt)         }
-{                                                                              }
-{******************************************************************************}
+(*******************************************************************************
+  TODO:
+  - Start-Grafik ersetzen bzw. ersetzen
+  - Logo Einbindung ermöglichen (png|jpg|bmp)
+  - Splash-Screen abschaltbar bzw. nicht modal
+
+  ISSUES, NOTES:
+  -
+
+  HISTORY:
+  30.10.2009 - UD: Initiale Version (CAO Fork by Open-Faktura Projekt)
+  28.11.2009 - UD: Funktionsaufruf "ExtractFilePath(ParamStr(0))" durch die
+                   Globale Variaiable "APP_PATH" ersetzt.
+*******************************************************************************)
 
 unit OF_StartUp;
 
@@ -61,27 +62,30 @@ type
     { Public declarations }
     Modal: Boolean;
   end;
-    
-var 
+
+var
   SScreen: TStartBox; // Splash-Screen für Programmstart !!
-  
+
 implementation
+
+uses
+  OF_Var_Const;
 
 {$R *.DFM}
 
 procedure TStartBox.FormCreate(Sender: TObject);
-var 
+var
   JPG: tJPegImage;
 begin
   Modal := False;
   {$IFDEF ALPHA}
   try
-    if fileexists (ExtractFilePath(ParamStr(0)) + 'logo.cao') then
+    if FileExists(APP_PATH + 'logo.cao') then
     begin
       JVImage1.Visible := False;
       JPG := tJPegImage.Create;
       try
-        Jpg.LoadFromFile (ExtractFilePath(ParamStr(0)) + 'logo.cao');
+        Jpg.LoadFromFile(APP_PATH + 'logo.cao');
         JVImage1.Picture.Assign (JPG);
         JVImage1.State := stDefault;
       finally
@@ -89,20 +93,20 @@ begin
       end;
       JVImage1.Visible := True;
     end;
-  except 
+  except
   end;
   {$ENDIF}
 end;
 
 procedure TStartBox.JvImage1Click(Sender: TObject);
 begin
-  if Modal then 
+  if Modal then
     Close;
 end;
 
 procedure TStartBox.FormKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
 begin
-  if Modal then 
+  if Modal then
     Close;
 end;
 

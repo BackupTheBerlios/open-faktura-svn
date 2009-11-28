@@ -86,9 +86,9 @@ var
 implementation
 
 uses
-  //ZSqlTypes,
   GNUGetText, DB,
   OF_DM, OF_Function, OF_MakeEKRech;
+  //OLD: ZSqlTypes,
 
 {$R *.DFM}
 

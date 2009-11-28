@@ -23,83 +23,91 @@
 {       ******* Open-Faktura comes with ABSOLUTELY NO WARRANTY *******         }
 {******************************************************************************}
 { $Id$ }
-{                                                                              }
-{ TODO:                                                                        }
-{ -                                                                            }
-{                                                                              }
-{ ISSUES, NOTES:                                                               }
-{ -                                                                            }
-{                                                                              }
-{ HISTORY:                                                                     }
-{ 13.01.2003 JP - Version 1.0.0.48 released Jan Pokrandt
-{ 17.01.2003 JP - Code für Einbindung der Formulare bei anlage eines neuen Mandanten
-{                 implementiert ( Formulare aus Datei formulare.cao )
-{ 20.01.2003 JP - DB-SQL-Code für aktuelle Version der DB (1.03) angepaßt
-{               - RX-Komponenten durch JEDI-VCL-Komponenten ersetzt
-{ 12.02.2003 JP - Fehler beim Storno von Belegen gefixt
-{ 14.03.2003 JP - Bug in Fkt. Buche_Einkauf entfernt
-{                 (EK-Preis im Artikelstammm wurde nach Einführung der Rabattgruppen
-{                 nicht mehr korrekt gesetzt)
-{            JP - neue Funktion "CalcRabGrpPreis" erstellt, die den EK-Preis bei
-{                 Übergabe des VK-Preises bei Artikeln mit Rabattgruppe errechnet
-{ 10.05.2003 JP - neue Tabelle Firma hinzugefügt, in der sich nur 1 DS mit den
-{                 aktuellen Firmendaten für die Formulare befindet
-{               - Funktion Buche_Einkauf erweitert, damit der Status der Bestellungen
-{                 korrekt aktualisiert wird.
-{ 11.05.2003 JP - neue Routine zum ermitteln der SQL-Benutzerrechte
-{                 Routinen zum öffnen, erzeugen und updaten eines Mandanten verbessert
-{                 bei zu wenigen Benutzerrechten wird jetzt mit einer Fehlermeldung
-{                 abgebrochen
-{               - Registry-Funktionen brechen jetzt sofort ab, wenn die DB nicht
-{                 connected ist
-{ 26.05.2003 JP - Rabattgruppen um VK-Gruppen erweitert
-{ 31.05.2003 JP - neue Funktion zur aktualisierung der Artikelfelder MENGE_xxx_EDI
-{               - Funktionen Buche_xxxxx überarbeitet, damit die MENGE_xxx_EDI korrekt
-{                 aktualisiert werden
-{ 01.07.2003 JP - Fehler beim Storno VK mit Barzahlung beseitigt
-{               - Bug #18 Default '0' aus allen Create anweisungen entfernt
-{               - Port für MySQL-Server wird jetzt aus der .cfg gelesen
-{ 13.07.2003 JP - Code für Speichern der Mandantentabelle hinzugefügt
-{               - Code zum einfügen eines neuen Mandanten hinzugefügt
-{               - Code für Backup + Restore entfernt (jetzt eigene Unit CAO_BACKUP.pas
-{ 27.07.2003 JP - 2 neue Funktionen zum Export vonb Datasets hinzugefügt
-{ 30.07.2003 JP - neue DB-Version 1.07 eingebaut
-{               - Bug in Funktion CalcRabGrpPreis beseitigt
-{               - 2 neue Routinen zum Laden und Speichern von Langtexten in die
-{                 SQL-Registry hinzugefügt
-{ 20.08.2003 JP - Beim Buchen von Rechnungen werden jetzt die Stücklisten-Artikel
-{                 mit Artikeltyp "Z" in die Rechnung als Unterartikel eingefügt
-{ 21.10.2003 JP - Automatisches Update für PLZ und BLZ eingebaut, dafür vird die
-{                 Version aus der .CFG-Datei mit der internen Version verglichen und
-{                 dann ggf. die PLZ/BLZ gelöscht und neu eingelesen
-{ 16.11.2003 JP - Mandant-Löschen Funktion hinzugefügt
-{ 02.12.2003 JP - neue Funktion IncNummerStr erstellt, welche eine Nummer aus einem
-{                 best. Nummernkreis mit hilfe des Nummernformates erzeugt
-{ 06.12.2003 JP - SQL-Paßwort wird jetzt verschlüsselt abgelegt
-{ 13.02.2004 JP - beim Storno von VK-Rechnungen werden jetzt auch Stücklistenartikel
-{                 korrekt zurückgebucht
-{ 14.05.2004 JP - Beim Buchen von EK-Rechnungen werden jetzt die VK's berechnet,
-{                 wenn Kalkulationsfaktoren mit im Spiel sind
-{ 20.05.2004 JP - Flag LINUX hinzugefügt, das per Kommandozeile gesetzt werden kann
-{ 23.10.2004 JP - Unit für Mehrsprachigkeit vorbereitet (GNU-Gettext)
-{ 07.11.2004 JP - Bugfix #130 / Routine "GetBankverbindung"
-{ 04.12.2004 JP - beim Erstellen einer neuen DB werden die fehlerhaften SQL-Befehle
-{                 mit Antwort in die Datei db_create_110_yyyy_mm_dd_hh_mm_ss.log
-{                 geschrieben
-{               - beim Update einer DB werden die fehlerhaften SQL-Befehle mit
-{                 Antwort in die Datei db_update_110_yyyy_mm_dd_hh_mm_ss.log
-{                 geschrieben
-{ 11.03.2005 NH - Staffelpreise bei Artikelpreisberechnung für Nettoberechnung
-{ 16.05.2005 KL - Stadium bei Vorauskasse war 22 falsch wird jetzt 20
-{ 25.05.2005 KL - Kfz Gruppenwahl aus Registry
-{ 15.07.2005 NH - Neue Funktion "GetLagerMenge" zum vereinfachten Lesen der
-{                 aktuellen Artikelmenge erstellt.
-{ 15.07.2005 NH - Neue Funktion "GetJournalPosMenge" zum vereinfachten Lesen der
-{                 aktuellen Artikelmenge in der Tabelle JournalPos.
-{ 10.10.2005 NH - Staffelpreisberechnung für Brutto und Netto eingeführt
-{ 30.10.2009 - UD: Initiale Version (CAO Fork by Open-Faktura Projekt)         }
-{                                                                              }
-{******************************************************************************}
+(*******************************************************************************
+  TODO:
+  -
+
+  ISSUES, NOTES:
+  -
+
+  HISTORY:
+  13.01.2003 JP - Version 1.0.0.48 released Jan Pokrandt
+  17.01.2003 JP - Code für Einbindung der Formulare bei anlage eines neuen Mandanten
+                  implementiert ( Formulare aus Datei formulare.cao )
+  20.01.2003 JP - DB-SQL-Code für aktuelle Version der DB (1.03) angepaßt
+                - RX-Komponenten durch JEDI-VCL-Komponenten ersetzt
+  12.02.2003 JP - Fehler beim Storno von Belegen gefixt
+  14.03.2003 JP - Bug in Fkt. Buche_Einkauf entfernt
+                  (EK-Preis im Artikelstammm wurde nach Einführung der Rabattgruppen
+                  nicht mehr korrekt gesetzt)
+             JP - neue Funktion "CalcRabGrpPreis" erstellt, die den EK-Preis bei
+                  Übergabe des VK-Preises bei Artikeln mit Rabattgruppe errechnet
+  10.05.2003 JP - neue Tabelle Firma hinzugefügt, in der sich nur 1 DS mit den
+                  aktuellen Firmendaten für die Formulare befindet
+                - Funktion Buche_Einkauf erweitert, damit der Status der Bestellungen
+                  korrekt aktualisiert wird.
+  11.05.2003 JP - neue Routine zum ermitteln der SQL-Benutzerrechte
+                  Routinen zum öffnen, erzeugen und updaten eines Mandanten verbessert
+                  bei zu wenigen Benutzerrechten wird jetzt mit einer Fehlermeldung
+                  abgebrochen
+                - Registry-Funktionen brechen jetzt sofort ab, wenn die DB nicht
+                  connected ist
+  26.05.2003 JP - Rabattgruppen um VK-Gruppen erweitert
+  31.05.2003 JP - neue Funktion zur aktualisierung der Artikelfelder MENGE_xxx_EDI
+                - Funktionen Buche_xxxxx überarbeitet, damit die MENGE_xxx_EDI korrekt
+                  aktualisiert werden
+  01.07.2003 JP - Fehler beim Storno VK mit Barzahlung beseitigt
+                - Bug #18 Default '0' aus allen Create anweisungen entfernt
+                - Port für MySQL-Server wird jetzt aus der .cfg gelesen
+  13.07.2003 JP - Code für Speichern der Mandantentabelle hinzugefügt
+                - Code zum einfügen eines neuen Mandanten hinzugefügt
+                - Code für Backup + Restore entfernt (jetzt eigene Unit CAO_BACKUP.pas
+  27.07.2003 JP - 2 neue Funktionen zum Export vonb Datasets hinzugefügt
+  30.07.2003 JP - neue DB-Version 1.07 eingebaut
+                - Bug in Funktion CalcRabGrpPreis beseitigt
+                - 2 neue Routinen zum Laden und Speichern von Langtexten in die
+                  SQL-Registry hinzugefügt
+  20.08.2003 JP - Beim Buchen von Rechnungen werden jetzt die Stücklisten-Artikel
+                  mit Artikeltyp "Z" in die Rechnung als Unterartikel eingefügt
+  21.10.2003 JP - Automatisches Update für PLZ und BLZ eingebaut, dafür vird die
+                  Version aus der .CFG-Datei mit der internen Version verglichen und
+                  dann ggf. die PLZ/BLZ gelöscht und neu eingelesen
+  16.11.2003 JP - Mandant-Löschen Funktion hinzugefügt
+  02.12.2003 JP - neue Funktion IncNummerStr erstellt, welche eine Nummer aus einem
+                  best. Nummernkreis mit hilfe des Nummernformates erzeugt
+  06.12.2003 JP - SQL-Paßwort wird jetzt verschlüsselt abgelegt
+  13.02.2004 JP - beim Storno von VK-Rechnungen werden jetzt auch Stücklistenartikel
+                  korrekt zurückgebucht
+  14.05.2004 JP - Beim Buchen von EK-Rechnungen werden jetzt die VK's berechnet,
+                  wenn Kalkulationsfaktoren mit im Spiel sind
+  20.05.2004 JP - Flag LINUX hinzugefügt, das per Kommandozeile gesetzt werden kann
+  23.10.2004 JP - Unit für Mehrsprachigkeit vorbereitet (GNU-Gettext)
+  07.11.2004 JP - Bugfix #130 / Routine "GetBankverbindung"
+  04.12.2004 JP - beim Erstellen einer neuen DB werden die fehlerhaften SQL-Befehle
+                  mit Antwort in die Datei db_create_110_yyyy_mm_dd_hh_mm_ss.log
+                  geschrieben
+                - beim Update einer DB werden die fehlerhaften SQL-Befehle mit
+                  Antwort in die Datei db_update_110_yyyy_mm_dd_hh_mm_ss.log
+                  geschrieben
+  11.03.2005 NH - Staffelpreise bei Artikelpreisberechnung für Nettoberechnung
+  16.05.2005 KL - Stadium bei Vorauskasse war 22 falsch wird jetzt 20
+  25.05.2005 KL - Kfz Gruppenwahl aus Registry
+  15.07.2005 NH - Neue Funktion "GetLagerMenge" zum vereinfachten Lesen der
+                  aktuellen Artikelmenge erstellt.
+  15.07.2005 NH - Neue Funktion "GetJournalPosMenge" zum vereinfachten Lesen der
+                  aktuellen Artikelmenge in der Tabelle JournalPos.
+  10.10.2005 NH - Staffelpreisberechnung für Brutto und Netto eingeführt
+  30.10.2009 - UD: Initiale Version (CAO Fork by Open-Faktura Projekt)
+  28.11.2009 - UD:
+               - Konstante für die Konfigurationsdatei hinzugefügt.
+               - Funktionsaufruf "ExtractFilePath(ParamStr(0))" durch die
+                 Globale Variaiable "APP_PATH" ersetzt.
+               - "MainDir" entfällt, durch "APP_PATH" ersetzt.
+               - "formulare.cao", "plz.cao", "blz.cao" und "land.cao" wurden durch
+                 die Konstante "CFG_FORMULAR_FILENAME", "CFG_PLZ_FILENAME",
+                 "CFG_BLZ_FILENAME" und "CFG_LAND_FILENAME" ersetzt.
+                 Die Dateiendung wurde dabei von ".CAO" auf ".OF" geändert. 
+*******************************************************************************)
 
 unit OF_DM;
 
@@ -758,7 +766,6 @@ type
     LeitWaehrung    : String;
     LandK2          : String[2];
 
-    MainDir         : String;
     BackupDir       : String;
     DTADir          : String;
     TmpDir          : String;
@@ -984,10 +991,10 @@ var
 implementation
 
 uses
-  gnugettext, IniFiles, FileCtrl, shellapi, XLSFile,
+  gnugettext, IniFiles, shellapi, XLSFile,
   OF_Tool1, OF_Function, OF_Link, OF_Logging, OF_Progress, OF_SearchClass,
   OF_SqlRechteDlg;
-  //ZExtra, ZSqlTypes,
+  //OLD: FileCtrl, ZExtra, ZSqlTypes,
 
 {$R *.DFM}
 
@@ -1059,8 +1066,7 @@ begin
   comp := p;
   strdispose(p);
 
-  MainDir       := ExtractFilePath(Paramstr(0));
-  LogDir        := MainDir+'LOG\';
+  LogDir        := APP_PATH + 'LOG\';
   ForceDirectories(LogDir);
   AnzPreis      := 5; //default = VK5
   USE_KFZ       := False;
@@ -1449,11 +1455,11 @@ begin
 
     try
       if NewDB then   // wenn neue Tabellen angelegt, dann evt. Formulare importieren ...
-        if (FileExists(ExtractFilePath(paramstr(0))+'formulare.cao')) and
+        if (FileExists(APP_PATH+CFG_FORMULAR_FILENAME)) and
            (MessageDlg(_('Sollen die Standardformulare installiert werden ?'),
                          mtconfirmation,mbyesnocancel,0) = mryes) then
         begin
-          ZBatchSQL1.Script.LoadFromFile(ExtractFilePath(paramstr(0))+'formulare.cao');
+          ZBatchSQL1.Script.LoadFromFile(APP_PATH+CFG_FORMULAR_FILENAME);
           ProgressForm.Init(_('Formulare installieren ...'));
           ProgressForm.Start;
           ZBatchSQL1.Execute;
@@ -1558,7 +1564,7 @@ begin
           S[Pos('.',S)] := DecimalSeparator;
       V := StrToFloat(S)*100;
     except
-      V :=-1; // zur Sicherheit, damit die nä. Updateschritte nicht ausgeführt werden !!!
+      V := -1; // zur Sicherheit, damit die nä. Updateschritte nicht ausgeführt werden !!!
 
       MessageDlg(_('Die Datenbankversion konnte nicht ermittelt werden !'+#13#10+
                    'Der ausgewählte Mandant wurde nicht geöffnet.'), mterror, [mbok], 0
@@ -1586,7 +1592,7 @@ begin
 
       if Save then
       begin
-        ininame := ExtractFilePath(paramstr(0))+'CAO32_DB.CFG';
+        ininame := APP_PATH + CFG_FILENAME; 
         MyIni := tIniFile.Create(IniName);
         try
           try
@@ -1620,7 +1626,7 @@ begin
     Result := False;
 
     MessageDlg(_('Die Einstellungen für den aktuellen Mandanten'+#13#10+
-                 'konnten aus der Datei "CAO32_DB.CFG" nicht gelesen werden.'+#13#10+
+                 'konnten aus der Datei "'+CFG_FILENAME+'" nicht gelesen werden.'+#13#10+
                  'Bitte prüfen Sie die Einstellungen.'), mterror, [mbok], 0
     );
   end;
@@ -1660,13 +1666,13 @@ begin
       UniQuery.Open;
       if (UniQuery.recordcount = 1) and
          ((UniQuery.fieldbyname('ANZ').asInteger < 10) or (PLZ_VERSION > V)) and
-         (FileExists(ExtractFilePath(paramstr(0))+'plz.cao')) then
+         (FileExists(APP_PATH+CFG_PLZ_FILENAME)) then
       begin
         ProgressForm.Init(_('PLZ importieren...'));
         UniQuery.close;
         UniQuery.sql.text := 'delete from PLZ';
         UniQuery.execsql;
-        ZBatchSql1.Script.LoadFromFile(ExtractFilePath(paramstr(0))+'plz.cao');
+        ZBatchSql1.Script.LoadFromFile(APP_PATH+CFG_PLZ_FILENAME);
         try
           SQLLog := False;
           Screen.Cursor := crSqlWait;
@@ -1694,13 +1700,13 @@ begin
       UniQuery.Open;
       if (UniQuery.recordcount = 1) and
          ((UniQuery.fieldbyname('ANZ').asInteger < 10) or (BLZ_VERSION > V)) and
-         (FileExists(ExtractFilePath(paramstr(0))+'blz.cao')) then
+         (FileExists(APP_PATH+CFG_BLZ_FILENAME)) then
       begin
         ProgressForm.Init(_('BLZ importieren...'));
         UniQuery.close;
         UniQuery.sql.text := 'delete from BLZ';
         UniQuery.execsql;
-        ZBatchSql1.Script.LoadFromFile(ExtractFilePath(paramstr(0))+'blz.cao');
+        ZBatchSql1.Script.LoadFromFile(APP_PATH+CFG_BLZ_FILENAME);
         try
           SQLLog := False;
           Screen.Cursor := crSqlWait;
@@ -1725,7 +1731,7 @@ begin
       UniQuery.Open;
       if (UniQuery.recordcount = 1) and
          (UniQuery.fieldbyname('ANZ').asInteger < 20)and
-         (FileExists(ExtractFilePath(paramstr(0))+'land.cao')) then
+         (FileExists(APP_PATH+CFG_LAND_FILENAME)) then
       begin
         ProgressForm.Init(_('Länder importieren...'));
         if UniQuery.fieldbyname('ANZ').asInteger > 0 then
@@ -1734,7 +1740,7 @@ begin
           ProgressForm.Start;
           ZBatchSql1.Execute;
         end;
-        ZBatchSql1.Script.LoadFromFile(ExtractFilePath(paramstr(0))+'land.cao');
+        ZBatchSql1.Script.LoadFromFile(APP_PATH+CFG_LAND_FILENAME);
         ZBatchSql1.Execute;
       end;
       UniQuery.close;
@@ -1876,12 +1882,12 @@ begin
     end;
 
     // Pfade laden
-    BackupDir   := ReadString('MAIN\PFADE', 'BACKUP_DIR', MainDir+'BACKUP\');
-    TmpDir      := ReadString('MAIN\PFADE', 'TMP_DIR', MainDir+'TMP\');
-    DTADir      := ReadString('MAIN\PFADE', 'DTA_DIR', MainDir+'DTA\');
-    ExportDir   := ReadString('MAIN\PFADE', 'EXPORT_DIR', MainDir+'EXPORT\');
-    ImportDir   := ReadString('MAIN\PFADE', 'IMPORT_DIR', MainDir+'IMPORT\');
-    FormularDir := ReadString('MAIN\PFADE', 'FORMULAR_DIR', MainDir+'FORMULAR\');
+    BackupDir   := ReadString('MAIN\PFADE', 'BACKUP_DIR', APP_PATH+'BACKUP\');
+    TmpDir      := ReadString('MAIN\PFADE', 'TMP_DIR', APP_PATH+'TMP\');
+    DTADir      := ReadString('MAIN\PFADE', 'DTA_DIR', APP_PATH+'DTA\');
+    ExportDir   := ReadString('MAIN\PFADE', 'EXPORT_DIR', APP_PATH+'EXPORT\');
+    ImportDir   := ReadString('MAIN\PFADE', 'IMPORT_DIR', APP_PATH+'IMPORT\');
+    FormularDir := ReadString('MAIN\PFADE', 'FORMULAR_DIR', APP_PATH+'FORMULAR\');
 
     if (Length(BackupDir) > 0) and (Backupdir[Length(BackupDir)] <> '\') then
       BackupDir := BackupDir + '\';
@@ -2356,7 +2362,7 @@ var
   po, idx, i: integer;
   S, S1, PW, PWC: String;
 begin
-  IniName := ExtractFilePath(ParamStr(0))+'CAO32_DB.CFG';
+  IniName := APP_PATH + CFG_FILENAME;
   ini := TIniFile.create(ininame);
   try
     po := 1;
@@ -2492,7 +2498,7 @@ begin
   if Length(MandantTab) = 0 then
     exit;
 
-  ininame := ExtractFilePath(paramstr(0))+'CAO32_DB.CFG';
+  ininame := APP_PATH + CFG_FILENAME;
   ini := tinifile.create(ininame);
   MySList := TStringList.Create;
   try

@@ -12,6 +12,7 @@
 //  Änderung:
 //    25.02.08-ud. - procedure ExpandVariables; public gemacht.
 //    01.11.09-ud. - Property zum Suchen der Datasets eingebaut.
+//    12.12.09-ud. - Funktionen "LoadFromString" und "SaveToString" hinzugefügt.
 //------------------------------------------------------------------------------
 
 unit FR_Class;
@@ -560,6 +561,8 @@ type
     // load/save methods
     procedure LoadFromStream(Stream: TStream);
     procedure SaveToStream(Stream: TStream);
+    procedure LoadFromString(aString: string);  //12.12.09-ud.
+    function SaveToString: string;  //12.12.09-ud.
     procedure LoadFromFile(FName: String);
     procedure SaveToFile(FName: String);
     procedure SaveToFR3File(FName: String);
@@ -5874,6 +5877,59 @@ begin
   frVersion := frCurrentVersion;
   Stream.Write(frVersion, 1);
   Pages.SaveToStream(Stream);
+end;
+
+//------------------------------------------------------------------------------
+// 12.12.09-ud.
+// Report wird aus den String gelesen.
+// Diese Funktion vereinfacht das lesen eines Reports aus der Datenbank.
+procedure TfrReport.LoadFromString(aString: string);
+var
+  Stream: TMemoryStream;
+  aStrLen: Integer;
+begin
+  Stream := TMemoryStream.Create;
+  try
+    aStrLen := Length(aString);
+    Stream.WriteBuffer(Pointer(aString)^, aStrLen);
+    Stream.Position := 0;
+    LoadFromStream(Stream);
+  finally
+    Stream.Free;
+  end;
+end;
+
+//------------------------------------------------------------------------------
+// 12.12.09-ud.
+// Report wird in den String geschrieben.
+// Diese Funktion vereinfacht das lesen eines Reports aus der Datenbank.
+function TfrReport.SaveToString: string;
+var
+  Stream: TMemoryStream;
+
+  function MemoryStreamToStr(const MemoryStream: TMemoryStream): string;
+  var
+    StringStream: TStringStream;
+  begin
+    StringStream := TStringStream.Create('');
+    try
+      StringStream.CopyFrom(MemoryStream, MemoryStream.Size);
+      Result := StringStream.DataString;
+    finally
+      StringStream.Free;
+    end;
+  end;
+
+begin
+  result := '';
+  Stream := TMemoryStream.Create;
+  try
+    SaveToStream(Stream);
+    Stream.Position := 0;
+    result := MemoryStreamToStr(Stream);
+  finally
+    Stream.Free;
+  end;
 end;
 
 procedure TfrReport.LoadFromFile(FName: String);

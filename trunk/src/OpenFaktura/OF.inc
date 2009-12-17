@@ -26,6 +26,7 @@
 {                                                                              }
 { HISTORY:                                                                     }
 { 30.10.2009 - UD: Initiale Version (CAO Fork by Open-Faktura Projekt)         }
+{ 17.12.2009 - UD: Compiler Direktiven angepasst                               }
 {                                                                              }
 {******************************************************************************}
 
@@ -58,20 +59,45 @@
 {$ENDIF}
 
 
-{$IFDEF VER150}
-  {$DEFINE COMPILER_D7}
-  {$DEFINE COMPILER_D7_UP}
-{$ENDIF}                           
+// VER100 - Delphi 3
+// VER120 - Delphi 4
 
+// VER130 - Delphi 5
+{$IFDEF VER130}
+  {$DEFINE COMPILER_D5}
+  {$DEFINE COMPILER_D5_UP}
+{$ENDIF}
+
+// VER140 - Delphi 6
 {$IFDEF VER140}
   {$DEFINE COMPILER_D6}
   {$DEFINE COMPILER_D6_UP}                    
 {$ENDIF}
 
-{$IFDEF VER130}
-  {$DEFINE COMPILER_D5}
-  {$DEFINE COMPILER_D5_UP}
+// VER150 - Delphi 7
+{$IFDEF VER150}
+  {$DEFINE COMPILER_D7}
+  {$DEFINE COMPILER_D7_UP}
 {$ENDIF}
+
+// VER160 - Delphi 8
+{$IFDEF VER160}
+  {$DEFINE COMPILER_D8}
+  {$DEFINE COMPILER_D8_UP}
+{$ENDIF}
+
+// VER170 - Delphi 2005
+{$IFDEF VER170}
+  {$DEFINE COMPILER_D2005}
+  {$DEFINE COMPILER_D2005_UP}
+{$ENDIF}
+
+// VER180 - Delphi 2006
+{$IFDEF VER180}
+  {$DEFINE COMPILER_D2006}
+  {$DEFINE COMPILER_D2006_UP}
+{$ENDIF}
+
 
 {$IFDEF COMPILER_D5}
   {$DEFINE COMPILER_D5_UP}
@@ -88,6 +114,30 @@
   {$DEFINE COMPILER_D7_UP}
 {$ENDIF}
 
+{$IFDEF COMPILER_D8}
+  {$DEFINE COMPILER_D5_UP}
+  {$DEFINE COMPILER_D6_UP}
+  {$DEFINE COMPILER_D7_UP}
+  {$DEFINE COMPILER_D8_UP}
+{$ENDIF}
+
+{$IFDEF COMPILER_D2005}
+  {$DEFINE COMPILER_D5_UP}
+  {$DEFINE COMPILER_D6_UP}
+  {$DEFINE COMPILER_D7_UP}
+  {$DEFINE COMPILER_D8_UP}
+  {$DEFINE COMPILER_D2005_UP}
+{$ENDIF}
+
+{$IFDEF COMPILER_D2006}
+  {$DEFINE COMPILER_D5_UP}
+  {$DEFINE COMPILER_D6_UP}
+  {$DEFINE COMPILER_D7_UP}
+  {$DEFINE COMPILER_D8_UP}
+  {$DEFINE COMPILER_D2005_UP}
+  {$DEFINE COMPILER_D2006_UP}
+{$ENDIF}
+
 //------------------------------------------------------------------------------
 
 {$IFDEF AVE}
@@ -100,4 +150,4 @@
 {$Q-} // keine Überlaufprüfung
 {$B-} // Boolsche Ausdrücke nicht vollständig
 
-
+//------------------------------------------------------------------------------

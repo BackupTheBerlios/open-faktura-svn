@@ -1,0 +1,85 @@
+ExDBGrid Component Suite Version 3.9
+
+Copyright (©) 1999, 2000 & 2001 by GJL Software
+Updated 17th September 2001 (17/09/2001)
+
+Email:         ExDBGrid@gjl-software.co.uk
+Home Page:     http://www.gjl-software.co.uk
+
+Delphi7-Stuff and german translation by Jan Pokrandt (jan@jp-soft.de)
+
+You need RxLib v2.75 or the JediVCL to be installed before installing the ExDBGrid 
+Component Suite
+
+From: http://www.rxlib.com or http://www.torry.net
+From: http://jvcl.sourceforge.net/
+
+1 - Edit ExDBGrid.inc and select your language.
+
+2 - Edit ExDBGrid.inc and select the required Dataset types to use.  You can have 
+    all the datasets defined at the same time.
+
+3 - Edit ExDBGrid.inc and select any additional image types to use within the grids.
+
+4 - Edit {$DEFINE JEDI} to compile the Component Suite with the JediVCL,
+    if switch off, u mush have the RxLib installed
+
+5 - For Delphi 7:
+
+    Remove any previous installed version.
+
+    If you use the JediVCL, use the *_JEDI.dpk !!!
+	
+    In the Delphi IDE, open and compile only GJLSoftwareD7.dpk. Put the resulting BPL 
+    into directory that is accessible through the search path (for example: in the 
+    DOS PATH or in the WINDOWS\SYSTEM directory).
+    The open and compile dGJLSoftware_D7_JEDI.dpk and finally install it. Do not save 
+    the package if Delphi asks you to.
+    Add the installation directory path to the Delphi Library Search Path if required.
+
+
+    For Delphi 6:
+
+    Remove any previous installed version.
+	
+    In the Delphi IDE, open and compile only GJLSoftwareD6.dpk. Put the resulting BPL 
+    into directory that is accessible through the search path (for example: in the 
+    DOS PATH or in the WINDOWS\SYSTEM directory).
+    The open and compile dGJLSoftwareD6.dpk and finally install it. Do not save the 
+    package if Delphi asks you to.
+    Add the installation directory path to the Delphi Library Search Path if required.
+
+    For Delphi 5:
+
+    Remove any previous installed version.
+
+    If you use the JediVCL, use the *_JEDI.dpk !!!
+	
+    In the Delphi IDE, open and compile only GJLSoftwareD5.dpk. Put the resulting BPL 
+    into directory that is accessible through the search path (for example: in the 
+    DOS PATH or in the WINDOWS\SYSTEM directory).
+    The open and compile dGJLSoftwareD5.dpk and finally install it. Do not save the 
+    package if Delphi asks you to.
+    Add the installation directory path to the Delphi Library Search Path if required.
+
+    For Delphi 4:
+
+    Remove any previous installed version.
+
+    In the Delphi IDE, open and compile only GJLSoftwareD4.dpk. Put the resulting BPL 
+    into directory that is accessible through the search path (for example: in the 
+    DOS PATH or in the WINDOWS\SYSTEM directory).
+    The open and compile dGJLSoftwareD4.dpk and finally install it. Do not save the 
+    package if Delphi asks you to.
+    Add the installation directory path to the Delphi Library Search Path if required.
+
+    For Delphi 3:
+
+    Remove any previous installed version.
+
+    In the Delphi IDE, open and compile only GJLSoftwareD3.dpk (Do not worry about warnings). 
+    Put the resulting BPL into directory that is accessible through the search path 
+    (for example: in the DOS PATH or in the WINDOWS\SYSTEM directory).
+    The open and compile dGJLSoftwareD3.dpk and finally install it. Do not save the 
+    package if Delphi asks you to.
+    Add the installation directory path to the Delphi Library Search Path if required.

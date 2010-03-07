@@ -1,0 +1,150 @@
+PLEASE READ INSTALL.TXT FOR INSTALLATION NOTES
+
+ExDBGrid Component Suite Version 3.9 - TExRxDBGrid
+
+Copyright (©) 1999, 2000, 2001 & 2002 by GJL Software
+Updated 15th April 2002 (15/04/2002)
+
+Email:         ExRxDBGrid@gjl-software.co.uk
+Home Page:     http://www.gjl-software.co.uk
+
+Description:   ExRxDBGrid is an Enhanced DBGrid Component that has plenty of new
+               features:
+
+               It has the following new Public Properties and Procedures:
+               Canvas, Col, Row, FixedCols, FixedRows, TopRow, SelectedRows,
+               DataLink, ColCount, RowCount, ColWidths, GridLineWidth,
+               InplaceEdit, TitleOffset, OnColumnResize, OptWidth (making the
+               'Grid' automatically size itself so that no white space is left
+               at the right), VisibleRowCount, VisibleColCount, GridHeight,
+               GridWidth, LeftCol, ExportGrid, ExportToFile, GridPreview,
+               DataSetPreview, GridPrint, DataSetPrint, SaveToRegistry,
+               LoadFromRegistry, CopyToClipboard, CutToClipboard,
+               PasteFromClipboard, ShowCustomizeDialog, ShowQueryByForm
+               and ShowSortByForm.
+
+               It has the following new Published Properties:
+               ScrollBars, EditColor, DefaultRowHeight, RowSizingAllowed,
+               DisplayImages, DisplayMemo, DisplayBoolean, GridAutoSize
+               (making the columns automatically resize so that they are as wide
+               as the row with the widest entry), GridAutoWidth (making the
+               columns automatically resize so that no white space is left at
+               the right), GridAutoWidthResize, FullSizeMemo, Cells3D
+               (when False, the Grid has a Flat look and feel - also the 3D
+               Cells can be any color), CellHints (when True and Columns are not
+               wide enough for the DisplayText, moving the mouse over a cell
+               shows the text in a hint window), RowColor1, RowColor2,
+               UseRowColors (using the properties RowColor1 and RowColor2),
+               MultiLineTitles, TitleCheck (which places a marker in the top
+               left of the grid and enables the grid popup menu when clicked),
+               BackgroundPicture, UseBackgroundPicture, ExportDelimiter,
+               AllowAutoAppend, DrawFocusRect, EnterAsTab, HighlightColor,
+               ImageHighlightColor, HighlightFontColor, ReportCaption, HotTrack,
+               HotTrackColor, LockedCols, LockedFont, LockedColor, FlatCheckBox,
+               FlatCheckBoxType, MemoViewType, RegistrySaveName,
+               ShowTextEllipsis, ShowTitleEllipsis, MultiLineRows, LinesPerRow,
+               DisplayDateTime, SearchMode (when True, clicking on the column
+               titles will display a search box for the column - Case Sensitive),
+               ExMenuOptions, ScrollHints, UseBitmapDrawing (if active, a
+               temporary bitmap is used to draw cells within the grid - it
+               decreases flickers but draws a cell a bit slowly),
+               MemoInplaceEditor, DisplayPopupEditors (when False, memos can
+               be edited inplace by single clicking the cell), MaskedColumnDrag,
+               ShowTitlesWhenInactive, BoldTitlesWhenCells3D,
+               BoldIndicatorsWhenCells3D, Controls, ExtendedScroll, ValueChecked,
+               and ValueUnChecked.
+
+               It has the following new Methods:
+               MoveToRow and CellRect (which is extremely useful if you want to
+               drop other controls on the grid i.e. pop a dropdown list over a
+               cell when the user enters it).
+
+               It has the following new Events:
+               OnColumnResize, OnMouseDown, OnMouseUp, OnMouseMove, OnColEnter,
+               OnRightClick, OnApplyCellAttribute (useful when you want to
+               change the colour of an individual cell, based on the value in
+               that cell or some other particular condition), OnCustomize,
+               OnAutoWidthResize and OnIsBooleanField.
+
+               In addition, it also has the following Features:
+               Design Time and Run Time viewing of images, including JPEG
+               support, Flat look and feel, Grid Printing, Grid Exporting,
+               Enhanced Scrollbar Tracking, Selecting and UnSelecting all
+               records, Column Customizing, Drag and Drop implementation,
+               Automatic Column Sorting (Tables and Queries), QueryByForm and
+               SortByForm implementation (For Paradox and dBASE any column names
+               specified in the SortByForm procedure must already be indexed.
+               For SQL-based tables, the specified columns need not be indexed.)
+
+               It also has built in popup viewers and Inplace Editors for
+               Graphic/Memo/RichEdit and Date/Time Fields. To use these and the
+               Checkbox, simply click on the Fields or use the Spacebar, F2 or
+               Enter Keys.
+
+*PLEASE NOTE*  Before making any bug reports please first verify you are
+               using the latest version by checking my home page. And if
+               you do report a bug, please, if applicable, include a code
+               sample.
+
+               Any suggested enhancements would also be appreciated.
+
+Notes:         I cannot support modified versions of this code. So if you
+               encounter a possible bug while using a modified version,
+               always first revert back to the original code before making
+               an attempt to contact me.
+
+Thanks To:     Del Geist -                 Mail: drgeist@ris.net
+               Alberto Doria -             Mail: adoria@arsed.it
+               Sergey Pjatakov -           Mail: psg@slav.ucom.dp.ua
+               Martin Sedlak -             Mail: sedma@pobox.sk
+               Jim Story -                 Mail: jhstory@compuserve.com
+               Pierre du Parte -           Mail: pierre@finalfiler.com
+               Timothy Kelly -             Mail: tmk198@ecs.soton.ac.uk
+               M.Bicak -                   Mail: m.b@okay.net
+               J.P. -                      Mail: pcl-software@clix.pt
+               Pascal Berger -             Mail: pberger@gmx.net
+               Alexandre Machado -         Mail: alexmac@horizontes.net
+               Eric van Agthoven -         Mail: eric.van.agthoven@it4mation.nl
+               Michele Palmieri -          Mail: mpalmieri@gruppoas.it
+               Ali Ramadan -               Mail: ARamadan@League.com.eg
+               Željko Frua -               Mail: multiform@si.tel.hr
+               Eric Bateman -              Mail: Ebateman242@cs.com
+               Guy van den Berg -          Mail: guy@brainwaves.co.za
+               Jean-Marc Auligine -        Mail: cleaix@compuserve.com
+               Yaroslav V Tatarenko -      Mail: yarik@meta.sebastopol.ua
+               Frank van den Bergh -       Mail: frank@bergh.org
+               George Tasker -             Mail: gtasker@optusnet.com.au
+               Andrea Guidetti -           Mail: andrea.guidetti@galactica.it
+               Paolo Pagani -              Mail: ppagani@csc.com
+               Roberto Chieregato -        Mail: roberto.chieregato@tin.it
+               Elizabeth Gathman -         Mail: carpenteraunt@mailandnews.com
+               Reijo Pitkanen -            Mail: reijo.pitkanen@somermatic.com
+               Adrian Tarau -              Mail: ady@datagroup.ro
+               Stuart -                    Mail: stuart@gsdassociates.co.uk
+               Thomas Dingermann -         Mail: thomas@dingermaenner.de
+               Marc HAUGUEL -              Mail: marc.hauguel@wanadoo.fr
+               Henner Kollmann -           Mail: Henner.Kollmann@gmx.de
+               Ales Vaupotic -             Mail: ales.vaupotic@elektro-logistika.com
+               Fabio Pedretti -            Mail: fabio.pedretti@libero.it
+
+Special Thanks go to Frederic Leneuf-magaud for all his efforts in improving the
+quality and features of the grid.
+
+This notice may not be removed from or altered in any source distribution.
+
+You are free to use the ExDBGrid Component Suite in compiled form for any
+purpose. However, use in commercial or shareware applications requires
+registration (see the Registration Documentation for information).
+
+GJL Software products in source code or object form (including but not limited
+to .PAS, .DCU, .OBJ), in whole or in part, modified or unmodified, may not be
+redistributed for profit or as part of another commercial or shareware software
+package without express written permission from me.
+
+This component is provided 'as-is', without any express or implied warranty.
+In no event shall the author be held liable for any damages arising from the
+use of this component.
+
+To use the ExRxDBGrid Demo, copy the table and its files from the Data directory to the Delphi Demos\Data directory.
+
+This Demo demonstrates how to sort columns and show the sort marker from TRXDBGrid.

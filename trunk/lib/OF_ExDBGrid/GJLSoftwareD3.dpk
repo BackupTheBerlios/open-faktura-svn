@@ -1,0 +1,51 @@
+package GJLSoftwareD3;
+
+{$R *.RES}
+{$R 'ExRxDBGrid.dcr'}
+{$R 'ExDBGrid.dcr'}
+{$R 'AdvStatusBar.dcr'}
+{$ALIGN ON}
+{$ASSERTIONS ON}
+{$BOOLEVAL OFF}
+{$DEBUGINFO ON}
+{$EXTENDEDSYNTAX ON}
+{$IMPORTEDDATA ON}
+{$IOCHECKS ON}
+{$LOCALSYMBOLS ON}
+{$LONGSTRINGS ON}
+{$OPENSTRINGS ON}
+{$OPTIMIZATION ON}
+{$OVERFLOWCHECKS OFF}
+{$RANGECHECKS OFF}
+{$REFERENCEINFO ON}
+{$SAFEDIVIDE OFF}
+{$STACKFRAMES OFF}
+{$TYPEDADDRESS OFF}
+{$VARSTRINGCHECKS ON}
+{$WRITEABLECONST ON}
+{$MINENUMSIZE 1}
+{$IMAGEBASE $00400000}
+{$DESCRIPTION 'GJL Software ExDBGrid Components'}
+{$RUNONLY}
+{$IMPLICITBUILD OFF}
+
+requires
+  vcl30,
+  VCLX30,
+  VCLSMP30,
+  VCLDB30,
+  RXCTL,
+  RXDB,
+  QRPT30;
+
+contains
+  ExDBGrid,
+  ExRxDBGrid,
+  AdvStatusBar,
+  ExDateTimePicker,
+  UnitReport,
+  ExColSelect,
+  ExDBGridCtls,
+  ExDBQbf;
+
+end.

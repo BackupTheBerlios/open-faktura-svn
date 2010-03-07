@@ -1,0 +1,64 @@
+package GJLSoftwareD5;
+
+{$R *.RES}
+{$R 'ExRxDBGrid.dcr'}
+{$R 'ExDBGrid.dcr'}
+{$R 'AdvStatusBar.dcr'}
+{$R 'ExDBImageEditor.dcr'}
+{$R 'ExRxUltimDBFooter.dcr'}
+{$R 'ExUltimDBFooter.dcr'}
+{$ALIGN ON}
+{$ASSERTIONS ON}
+{$BOOLEVAL OFF}
+{$DEBUGINFO ON}
+{$EXTENDEDSYNTAX ON}
+{$IMPORTEDDATA ON}
+{$IOCHECKS ON}
+{$LOCALSYMBOLS ON}
+{$LONGSTRINGS ON}
+{$OPENSTRINGS ON}
+{$OPTIMIZATION ON}
+{$OVERFLOWCHECKS OFF}
+{$RANGECHECKS OFF}
+{$REFERENCEINFO ON}
+{$SAFEDIVIDE OFF}
+{$STACKFRAMES OFF}
+{$TYPEDADDRESS OFF}
+{$VARSTRINGCHECKS ON}
+{$WRITEABLECONST ON}
+{$MINENUMSIZE 1}
+{$IMAGEBASE $400000}
+{$DESCRIPTION 'GJL Software ExDBGrid Components'}
+{$RUNONLY}
+{$IMPLICITBUILD OFF}
+
+requires
+  VCL50,
+  VCLDB50,
+  Vclx50,
+  vcljpg50,
+  VclSmp50,
+  qrpt50,
+  Vclbde50,
+  RxDB5,
+  RxCtl5,
+  RxBDE5;
+
+contains
+  ExDBGrid in 'ExDBGrid.pas',
+  ExRxDBGrid in 'ExRxDBGrid.pas',
+  AdvStatusBar in 'AdvStatusBar.pas',
+  ExDateTimePicker in 'ExDateTimePicker.pas',
+  ExDBImageEditor in 'ExDBImageEditor.pas' {ExDBImageEditor: TFrame},
+  ExRxUltimDBFooter in 'ExRxUltimDBFooter.pas',
+  ExUltimDBFooter in 'ExUltimDBFooter.pas',
+  UnitReport in 'UnitReport.pas',
+  ExRxColSelect in 'ExRxColSelect.pas' {ExRxColSelectFrm},
+  ExDBGridCtls in 'ExDBGridCtls.pas' {ExDBGridCtlsForm},
+  ExDBQbf in 'ExDBQbf.pas' {dlgExDBQbf},
+  ExColSelect in 'ExColSelect.pas' {ExColSelectFrm},
+  ExRxDBGridToWord in 'ExRxDBGridToWord.pas',
+  ExDBGridToWord in 'ExDBGridToWord.pas';
+
+end.
+

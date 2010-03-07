@@ -1,0 +1,19 @@
+The ExDBGrid Component Suite is distributed as Freeware for non-commercial use.
+If you use it commerically, you are required to register.
+
+How do I register?
+
+The cost of a licence is US$10. This license permits development and
+distribution of the ExDBGrid Component Suite in compiled form, in any type of
+application - be it commericial, shareware, or freeware.
+
+The quickest and most convenient way to register the ExDBGrid Component Suite is
+online via credit card.
+
+Registration URL:
+https://secure.element5.com/register.html?productid=133145&language=English
+
+What do I get when I register?
+
+You get all further ExDBGrid Component Suite versions free, including full
+source code of course.

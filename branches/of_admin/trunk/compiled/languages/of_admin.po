@@ -1,0 +1,159 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8"
+
+#: TMAINFORM.MAINFORM.CAPTION
+msgid "Open-Faktura"
+msgstr ""
+
+#: TMAINFORM.MENUITEM1.CAPTION
+msgid "&Datei"
+msgstr ""
+
+#: TMAINFORM.MENUITEM10.CAPTION
+msgid "Inhalt"
+msgstr ""
+
+#: TMAINFORM.MENUITEM11.CAPTION
+msgid "Einführung"
+msgstr ""
+
+#: TMAINFORM.MENUITEM12.CAPTION
+msgid "-"
+msgstr ""
+
+#: TMAINFORM.MENUITEM13.CAPTION
+msgid "Über"
+msgstr ""
+
+#: TMAINFORM.MENUITEM2.CAPTION
+msgid "Beenden"
+msgstr ""
+
+#: TMAINFORM.MENUITEM3.CAPTION
+msgid "&Modul"
+msgstr ""
+
+#: TMAINFORM.MENUITEM4.CAPTION
+msgid "Mandant / Benutzerwechsel"
+msgstr ""
+
+#: TMAINFORM.MENUITEM5.CAPTION
+msgctxt "TMAINFORM.MENUITEM5.CAPTION"
+msgid "--"
+msgstr ""
+
+#: TMAINFORM.MENUITEM6.CAPTION
+msgid "Datenbank prüfen, optimieren, reparieren"
+msgstr ""
+
+#: TMAINFORM.MENUITEM7.CAPTION
+msgctxt "TMAINFORM.MENUITEM7.CAPTION"
+msgid "--"
+msgstr ""
+
+#: TMAINFORM.MENUITEM8.CAPTION
+msgid "Mandantenverwaltung"
+msgstr ""
+
+#: TMAINFORM.MENUITEM9.CAPTION
+msgid "Hilfe"
+msgstr ""
+
+#: TMAINFORM.MNULOG.CAPTION
+msgid "SQL-Log"
+msgstr ""
+
+#: TMAINFORM.MNUREGEDIT.CAPTION
+msgid "Regstrierungs-Editor"
+msgstr ""
+
+#: TMAINFORM.MNUSETUP.CAPTION
+msgid "allgemeine Einstellungen"
+msgstr ""
+
+#: TMAINFORM.N15.CAPTION
+msgctxt "TMAINFORM.N15.CAPTION"
+msgid "--"
+msgstr ""
+
+#: TMAINFORM.N4.CAPTION
+msgctxt "TMAINFORM.N4.CAPTION"
+msgid "--"
+msgstr ""
+
+#: TMAINFORM.SBAR.PANELS[0].TEXT
+msgid "Benutzer"
+msgstr ""
+
+#: TMAINFORM.SBAR.PANELS[1].TEXT
+msgid "Speicher"
+msgstr ""
+
+#: TMAINFORM.SBAR.PANELS[2].TEXT
+msgid "Suchzeit"
+msgstr ""
+
+#: TMAINFORM.SBAR.PANELS[3].TEXT
+msgid "Datensatz"
+msgstr ""
+
+#: TMAINFORM.SBAR.PANELS[4].TEXT
+msgid "Suchfeld"
+msgstr ""
+
+#: TMAINFORM.SBAR.PANELS[5].TEXT
+msgid "erstellt"
+msgstr ""
+
+#: TMAINFORM.SBAR.PANELS[6].TEXT
+msgid "geändert"
+msgstr ""
+
+#: TMAINFORM.STAMMDATEN.CAPTION
+msgid "Stammdaten"
+msgstr ""
+
+#: TMAINFORM.STAMMDATEN.ITEMS[0].CAPTION
+msgid "Home"
+msgstr ""
+
+#: TMAINFORM.STAMMDATEN.ITEMS[1].CAPTION
+msgid "Mitarbeiter"
+msgstr ""
+
+#: TMAINFORM.STAMMDATEN.ITEMS[2].CAPTION
+msgid "Browser"
+msgstr ""
+
+#: TMAINFORM.TOOLS.CAPTION
+msgid "Tools"
+msgstr ""
+
+#: TMAINFORM.TOOLS.ITEMS[0].CAPTION
+msgid "PLZ"
+msgstr ""
+
+#: TMAINFORM.TOOLS.ITEMS[1].CAPTION
+msgid "BLZ"
+msgstr ""
+
+#: TSTARTBOX.LABEL1.CAPTION
+msgid "© 2009"
+msgstr ""
+
+#: TSTARTBOX.LABEL2.CAPTION
+msgid "Das Open-Faktura Team"
+msgstr ""
+
+#: TSTARTBOX.LABEL3.CAPTION
+msgid "OF Admin"
+msgstr ""
+
+#: TSTARTBOX.LAVERSION.CAPTION
+msgid "Version 0.0.1"
+msgstr ""
+
+#: TSTARTBOX.STARTBOX.CAPTION
+msgid "Programm-Information"
+msgstr ""
+
